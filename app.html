@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotirovky</title>
+</head>
+<body>
+<p id="pMoex"></p>
+
+  <script>
+let p = document.querySelector("p#pMoex");
+
+// Fetching kotirovky from imoex in an async function
+async function getMOEXPrice() {
+  try {
+    const response = await fetch('https://iss.moex.com/iss/engines/stock/MOEX/securities.json');
+    const data = await response.json();
+    const moexPrice = data.securities.find(security => security.secId === 'MOEX').lastPrice;
+    console.log(`Current MOEX price: ${moexPrice}`);
+  } catch (error) {
+    console.error('Error fetching MOEX price:', error);
+  }
+}
+
+getMOEXPrice();
+
+// получение данных: тикер - стоимость акции
+
+
+
+
+
+  </script>  
+</body>
+</html>
